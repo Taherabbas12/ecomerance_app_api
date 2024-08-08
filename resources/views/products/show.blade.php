@@ -113,11 +113,23 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+        .top-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <div class="top-btns">
+            <a href="{{ route('similarProducts.store', ['productId' => $product->id]) }}" class="btn btn-primary">إضافة
+                منتج مشابه الى المقترحات</a>
+
+            <a href="{{ route('products.index') }}" class="btn btn-secondary">عرض المنتجات</a>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <h1 class="product-title">{{ $product->name }}</h1>
@@ -141,12 +153,14 @@
         <div class="row">
             @foreach($similarProducts as $similarProduct)
                 <div class="col-md-3">
-                    <div class="card mb-4">
-                        <img src="https://via.placeholder.com/450" class="card-img-top" alt="Similar Product Image">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $similarProduct->name }}</h5>
+                    <a href="{{ route('products.show', $similarProduct->id) }}">
+                        <div class="card mb-4">
+                            <img src="https://via.placeholder.com/450" class="card-img-top" alt="Similar Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $similarProduct->name }}</h5>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
