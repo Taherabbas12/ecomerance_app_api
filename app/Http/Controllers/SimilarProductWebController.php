@@ -14,7 +14,7 @@ class SimilarProductWebController extends Controller
         $allProducts = Product::where('id', '!=', $productId)->get();
         $allCategories = Category::all();
 
-        // الحصول على المنتجات في نفس الفئة
+
         $similarCategoryProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $productId)
             ->get();
