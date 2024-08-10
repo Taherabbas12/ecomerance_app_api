@@ -72,6 +72,11 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <a href="{{ route('categories.create') }}" class="btn btn-primary">Add New Category</a>
         </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="{{ route('categories.compare.form') }}" class="btn btn-primary">انتقل إلى نموذج اختيار
+                الفئات</a>
+        </div>
+
 
         <div class="row">
             @if($categories->isEmpty())

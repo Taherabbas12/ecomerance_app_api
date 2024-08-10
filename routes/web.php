@@ -4,19 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsWebController;
 use App\Http\Controllers\CategoryWebController;
 use App\Http\Controllers\SimilarProductWebController;
+use App\Http\Controllers\CategoryComparisonController;
 
-use App\Http\Controllers\ContactController;
+Route::get('categories/compare/form', [CategoryWebController::class, 'showComparisonForm'])->name('categories.compare.form');
+Route::post('categories/compare', [CategoryWebController::class, 'compareCategories'])->name('categories.compare');
+Route::post('/save-comparison', [CategoryWebController::class, 'saveComparison'])->name('save.comparison');
+Route::get('/similar-categories', [CategoryWebController::class, 'showSimilarCategories'])->name('similar.categories');
+Route::delete('/similar-categories/{id}', [CategoryWebController::class, 'deleteSimilarCategory'])->name('delete.similar.category');
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');

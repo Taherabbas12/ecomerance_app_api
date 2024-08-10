@@ -17,4 +17,11 @@ class Product extends Model
     {
         return $this->belongsToMany(Product::class, 'similar_products', 'product_id', 'similar_product_id');
     }
+
+    public function similarCategoryProducts()
+    {
+        return Product::whereIn('category_id', $this->category->similarCategories->pluck('id'))
+            ->where('id', '!=', $this->id)
+            ->get();
+    }
 }

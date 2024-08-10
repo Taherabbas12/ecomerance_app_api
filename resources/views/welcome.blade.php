@@ -80,7 +80,15 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-md-4 mb-4">
+                <div class="card option-card">
+                    <div class="card-body">
+                        <h5 class="card-title">similar-categories</h5>
+                        <p class="card-text">Browse our similar-categories or add similar-categories.</p>
+                        <a href="{{ route('similar.categories') }}" class="btn btn-primary">View Products</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

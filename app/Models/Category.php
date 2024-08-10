@@ -13,6 +13,16 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
+
+
+
+    public function similarCategories()
+    {
+        return $this->belongsToMany(Category::class, 'similar_categories', 'category_id', 'similar_category_id');
+    }
+
+
+
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id');

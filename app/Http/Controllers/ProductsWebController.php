@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 class ProductsWebController extends Controller
 {
-    //
-
-
-
-
     public function index()
     {
         $products = Product::all();
@@ -24,16 +19,18 @@ class ProductsWebController extends Controller
         $categories = Category::all();
         return view('products.create', compact('categories'));
     }
+
     public function show($id)
     {
         $product = Product::findOrFail($id);
 
+        $similarProducts = $product->similarProducts;
+        $similarCategoryProducts = $product->similarCategoryProducts();
 
-        $similarProducts = $product->similarProducts()->get();
+        $similarProducts = $similarProducts->merge($similarCategoryProducts);
 
         return view('products.show', compact('product', 'similarProducts'));
     }
-
 
     public function store(Request $request)
     {
@@ -47,5 +44,4 @@ class ProductsWebController extends Controller
         Product::create($validated);
         return redirect()->route('products.index');
     }
-
 }

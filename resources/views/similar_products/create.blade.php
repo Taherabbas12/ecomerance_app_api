@@ -54,8 +54,16 @@
             <div class="col-md-8">
                 <div class="form-container">
                     <h2 class="form-title">إضافة منتج مشابه</h2>
-                    <form action="{{ route('products.similar.store', ['product' => $productId]) }}" method="POST">
+                    <form action="{{ route('products.similar.store', ['product' => $product->id]) }}" method="POST">
                         @csrf
+                        <div class="mb-3">
+                            <label for="category" class="form-label">فئة المنتج</label>
+                            <select class="form-control" id="category" name="category_id">
+                                @foreach ($allCategories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="mb-3">
                             <label for="similar_product" class="form-label">اسم المنتج</label>
                             <div class="dropdown">
@@ -68,6 +76,12 @@
                         <input type="hidden" id="similar_product_id" name="similar_product_id">
                         <button type="submit" class="btn btn-primary">إضافة منتج مشابه</button>
                     </form>
+                    <h3 class="mt-4">منتجات من نفس الفئة</h3>
+                    <ul class="list-group">
+                        @foreach ($similarCategoryProducts as $similarProduct)
+                            <li class="list-group-item">{{ $similarProduct->name }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
